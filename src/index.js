@@ -8,8 +8,9 @@ let facts = {}
 var db = buildFirebase();
 var dbRef = db.ref("/funFacts");
 dbRef.once("value").then(function(data) {
- facts = data.val();
- ReactDOM.render(<App />, document.getElementById('root'));
+ facts = Object.values(data.val());
+ console.log(facts);
+ ReactDOM.render(<App data={facts}/>, document.getElementById('root'));
 });
 
 

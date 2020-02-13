@@ -5,10 +5,15 @@ class FactModel {
     }
 
     getFact() {
-        return this.fact;
+        if(this.fact === null || this.fact === undefined)
+            return "MISSING DATA";
+        return this.fact.fact;
     }
 
     getNumber() {
+        if(this.number < 0) {
+            return "WRONG DATA";
+        }
         return this.number;
     }
 }

@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import '../css/App.css';
+import FactModel from '../factModel.js';
 // import components
-
+import Header from './Header.jsx';
+import Facts from './Facts.jsx';
 
 class App extends Component {
   constructor(props) {
@@ -9,6 +11,7 @@ class App extends Component {
     this.state = {
       factNumber: 0
     }
+    this.handleClick = this.handleClick.bind(this);
   }
 
   getFact() {
@@ -16,16 +19,17 @@ class App extends Component {
   }
 
   handleClick() {
-
+    this.setState({factNumber:this.state.factNumber+1});
   }
 
   render() {
     console.log(this.props.data);
+    let fact = new FactModel(this.props.data[this.state.factNumber], this.state.factNumber);
     return (
       <div className="app">
         <Header/>
-        <Facts/>
-        <button>Next</button>
+        <Facts fact={fact}/>
+        <button onClick={this.handleClick}>Next</button>
       </div>
     );
   }
